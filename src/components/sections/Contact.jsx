@@ -115,7 +115,8 @@ export const Contact = () => {
                 <Button
                   variant="outline"
                   size="md"
-                  href="/resume.pdf"
+                  href="/resume.png"
+                  download="Himanshu_Sengar_Resume.png"
                   icon={<FileText size={16} />}
                   iconPosition="left"
                   className="w-full justify-start text-xs sm:text-sm"

@@ -96,7 +96,7 @@ export const Hero = () => {
               <Button variant="primary" href="#projects" icon={<ArrowRight size={16} />}>
                 View Projects
               </Button>
-              <Button variant="secondary" href="/resume.pdf" icon={<FileText size={16} />} iconPosition="left">
+              <Button variant="secondary" href="/resume.png" download="Himanshu_Sengar_Resume.png" icon={<FileText size={16} />} iconPosition="left">
                 Download Resume
               </Button>
             </motion.div>

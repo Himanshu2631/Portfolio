@@ -66,7 +66,7 @@ export const Navbar = () => {
               </Link>
             ))}
           </div>
-          <Button variant="outline" size="sm" href="/resume.pdf" icon={<ArrowUpRight size={14} />} >
+          <Button variant="outline" size="sm" href="/resume.png" download="Himanshu_Sengar_Resume.png" icon={<ArrowUpRight size={14} />} >
             Resume
           </Button>
         </nav>
@@ -109,7 +109,8 @@ export const Navbar = () => {
               <Button
                 variant="outline"
                 size="md"
-                href="/resume.pdf"
+                href="/resume.png"
+                download="Himanshu_Sengar_Resume.png"
                 icon={<ArrowUpRight size={16} />}
                 className="w-full mt-2"
                 onClick={() => setIsOpen(false)}

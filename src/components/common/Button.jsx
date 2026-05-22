@@ -63,7 +63,7 @@ export const Button = memo(({
   };
 
   if (href) {
-    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.endsWith(".pdf") || href.endsWith(".png") || href.endsWith(".jpg") || href.endsWith(".jpeg") || !!props.download;
     if (isExternal) {
       return (
         <motion.a
