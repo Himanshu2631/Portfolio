@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 
 export const Hero = () => {
-  const containerVariants: Variants = {
+  const containerVariants = {
     hidden: {},
     visible: {
       transition: {
@@ -16,19 +16,19 @@ export const Hero = () => {
     },
   };
 
-  const itemVariants: Variants = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
+        ease: [0.16, 1, 0.3, 1], // easeOutExpo
       },
     },
   };
 
-  const terminalVariants: Variants = {
+  const terminalVariants = {
     hidden: { opacity: 0, scale: 0.98, x: 15 },
     visible: {
       opacity: 1,
@@ -37,17 +37,13 @@ export const Hero = () => {
       transition: {
         duration: 0.8,
         delay: 0.35,
-        ease: [0.16, 1, 0.3, 1] as const,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 
   return (
-    <section id="hero" className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden grid-bg">
-      {/* Background Subtle Accent Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
-
+    <section id="hero" className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden grid-bg">
       <Container className="relative z-10 w-full">
         <motion.div
           variants={containerVariants}
@@ -59,31 +55,38 @@ export const Hero = () => {
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <motion.span
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-accent-muted text-accent border border-accent/10 mb-6 tracking-wide"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-mono bg-card-bg text-muted border border-card-border mb-6 select-none"
             >
-              <Terminal size={12} />
-              Open to projects & collaboration
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              Available for work
             </motion.span>
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-4"
+              className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-4"
             >
-              Hi, I&apos;m <span className="text-white">Himanshu</span>
+              Hi, I&apos;m <span className="text-white">Himanshu Sengar</span>
             </motion.h1>
 
             <motion.h2
               variants={itemVariants}
-              className="text-2xl sm:text-3xl font-bold text-accent mb-6"
+              className="text-xl sm:text-2xl font-semibold text-accent mb-6"
             >
               Full Stack Developer
             </motion.h2>
 
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg text-muted max-w-lg leading-relaxed mb-10"
+              className="text-base sm:text-lg md:text-xl text-foreground/90 max-w-xl leading-relaxed mb-4 font-normal"
             >
-              I design and engineer minimal, highly optimized web applications. Focused on clean state management, modular architectures, and smooth interactive design.
+              Building scalable web applications, automation systems, and deployment-focused solutions using modern frontend and backend technologies.
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-sm sm:text-base text-muted max-w-lg leading-relaxed mb-8 font-light"
+            >
+              Focused on React ecosystems, DevOps-oriented workflows, and real-world software engineering projects.
             </motion.p>
 
             <motion.div
@@ -93,8 +96,8 @@ export const Hero = () => {
               <Button variant="primary" href="#projects" icon={<ArrowRight size={16} />}>
                 View Projects
               </Button>
-              <Button variant="secondary" href="#contact">
-                Contact Me
+              <Button variant="secondary" href="/resume.pdf" icon={<FileText size={16} />} iconPosition="left">
+                Download Resume
               </Button>
             </motion.div>
           </div>
@@ -114,18 +117,18 @@ export const Hero = () => {
                   <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                   <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
                 </div>
-                <span className="text-muted-dark text-xs">himanshu.ts</span>
+                <span className="text-muted-dark text-xs">himanshu.js</span>
                 <div className="w-12" />
               </div>
 
               {/* Window Code Content */}
-              <div className="p-5 sm:p-6 space-y-4 overflow-x-auto leading-relaxed">
+              <div className="p-4 sm:p-6 space-y-4 overflow-x-auto leading-relaxed">
                 <div>
                   <span className="text-purple-400">const</span>{" "}
                   <span className="text-blue-400">developer</span> = {"{"}
                   <div className="pl-4 sm:pl-6">
                     <span className="text-sky-300">name</span>:{" "}
-                    <span className="text-emerald-400">&apos;Himanshu&apos;</span>,
+                    <span className="text-emerald-400">&apos;Himanshu Sengar&apos;</span>,
                   </div>
                   <div className="pl-4 sm:pl-6">
                     <span className="text-sky-300">role</span>:{" "}
@@ -134,15 +137,14 @@ export const Hero = () => {
                   <div className="pl-4 sm:pl-6">
                     <span className="text-sky-300">skills</span>: [
                     <div className="pl-4 sm:pl-6 text-emerald-400">
-                      &apos;TypeScript&apos;, &apos;Next.js&apos;,<br />
-                      &apos;TailwindCSS&apos;, &apos;NodeJS&apos;,<br />
-                      &apos;PostgreSQL&apos;, &apos;FramerMotion&apos;
+                      &apos;React&apos;, &apos;Next.js&apos;, &apos;Node.js&apos;,<br />
+                      &apos;TypeScript&apos;, &apos;DevOps&apos;, &apos;PostgreSQL&apos;
                     </div>
                     ],
                   </div>
                   <div className="pl-4 sm:pl-6">
                     <span className="text-sky-300">focus</span>:{" "}
-                    <span className="text-emerald-400">&apos;Clean Code & Performance&apos;</span>
+                    <span className="text-emerald-400">&apos;React, DevOps & Scalability&apos;</span>
                   </div>
                   {"};"}
                 </div>

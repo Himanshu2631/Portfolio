@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
@@ -17,22 +17,25 @@ const NAV_ITEMS = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const isScrolled = window.scrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled
-          ? "py-3 bg-background/80 border-b border-card-border backdrop-blur-md"
-          : "py-5 bg-transparent"
+          ? "py-3 bg-background/80 border-card-border"
+          : "py-5 bg-transparent border-transparent"
       }`}
     >
       <Container className="flex items-center justify-between">
@@ -40,7 +43,7 @@ export const Navbar = () => {
         <Link href="/" className="font-semibold text-lg tracking-tight text-foreground hover:text-accent transition-colors flex items-center gap-0.5">
           Himanshu<span className="text-accent font-bold">.</span>
         </Link>
-
+ 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-1 mr-2">
@@ -55,7 +58,7 @@ export const Navbar = () => {
                 {hoveredIndex === idx && (
                   <motion.span
                     layoutId="navHover"
-                    className="absolute inset-0 bg-accent-muted rounded-md -z-10"
+                    className="absolute inset-0 bg-[#1c1c1e] rounded-md -z-10"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -63,29 +66,33 @@ export const Navbar = () => {
               </Link>
             ))}
           </div>
-          <Button variant="outline" size="sm" href="/resume.pdf" icon={<ArrowUpRight size={14} />}>
+          <Button variant="outline" size="sm" href="/resume.pdf" icon={<ArrowUpRight size={14} />} >
             Resume
           </Button>
         </nav>
-
+ 
         {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden p-1.5 text-muted hover:text-foreground transition-colors cursor-pointer rounded-lg hover:bg-card-bg border border-transparent hover:border-card-border"
           aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation-menu"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </Container>
-
+ 
       {/* Mobile nav dropdown */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
+          <motion.nav
+            id="mobile-navigation-menu"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={shouldReduceMotion ? { duration: 0.15 } : { duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="absolute top-full left-0 right-0 bg-background/95 border-b border-card-border backdrop-blur-lg md:hidden py-6"
           >
             <Container className="flex flex-col gap-4">
@@ -110,7 +117,7 @@ export const Navbar = () => {
                 Resume
               </Button>
             </Container>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>
