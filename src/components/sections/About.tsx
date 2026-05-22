@@ -33,7 +33,7 @@ export const About = () => {
           </div>
 
           {/* Tech Stack / Skills */}
-          <div className="md:col-span-5">
+          <div id="skills" className="md:col-span-5 scroll-mt-28">
             <FadeIn direction="up" delay={0.3}>
               <h3 className="text-sm font-semibold tracking-wider text-muted-dark uppercase mb-6">
                 Technical Toolkit

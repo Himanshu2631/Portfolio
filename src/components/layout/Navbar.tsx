@@ -8,15 +8,16 @@ import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
 
 const NAV_ITEMS = [
-  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,22 +37,33 @@ export const Navbar = () => {
     >
       <Container className="flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="font-semibold text-lg tracking-tight hover:text-accent transition-colors flex items-center gap-0.5">
-          <span className="text-accent font-bold">.</span>dev
+        <Link href="/" className="font-semibold text-lg tracking-tight text-foreground hover:text-accent transition-colors flex items-center gap-0.5">
+          Himanshu<span className="text-accent font-bold">.</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm text-muted hover:text-foreground transition-colors relative py-1"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button variant="outline" size="sm" href="#contact" icon={<ArrowUpRight size={14} />}>
+        <nav className="hidden md:flex items-center gap-4">
+          <div className="flex items-center gap-1 mr-2">
+            {NAV_ITEMS.map((item, idx) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="text-sm font-medium text-muted hover:text-foreground transition-colors relative px-3 py-1.5 rounded-md"
+              >
+                {hoveredIndex === idx && (
+                  <motion.span
+                    layoutId="navHover"
+                    className="absolute inset-0 bg-accent-muted rounded-md -z-10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <Button variant="outline" size="sm" href="/resume.pdf" icon={<ArrowUpRight size={14} />}>
             Resume
           </Button>
         </nav>
@@ -76,13 +88,13 @@ export const Navbar = () => {
             transition={{ duration: 0.2 }}
             className="absolute top-full left-0 right-0 bg-background/95 border-b border-card-border backdrop-blur-lg md:hidden py-6"
           >
-            <Container className="flex flex-col gap-5">
+            <Container className="flex flex-col gap-4">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-base text-muted hover:text-foreground transition-colors"
+                  className="text-base font-medium text-muted hover:text-foreground transition-colors px-3 py-2 rounded-md hover:bg-card-bg"
                 >
                   {item.label}
                 </Link>
@@ -90,7 +102,7 @@ export const Navbar = () => {
               <Button
                 variant="outline"
                 size="md"
-                href="#contact"
+                href="/resume.pdf"
                 icon={<ArrowUpRight size={16} />}
                 className="w-full mt-2"
                 onClick={() => setIsOpen(false)}
