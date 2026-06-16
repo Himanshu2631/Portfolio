@@ -115,13 +115,12 @@ export const Contact = () => {
                 <Button
                   variant="outline"
                   size="md"
-                  href="/resume.png"
-                  download="Himanshu_Sengar_Resume.png"
+                  href="/Himanshu_Sengar_Resume.pdf"
                   icon={<FileText size={16} />}
                   iconPosition="left"
                   className="w-full justify-start text-xs sm:text-sm"
                 >
-                  Download Resume
+                  View Resume
                   <ArrowUpRight size={12} className="ml-auto opacity-60" />
                 </Button>
               </motion.div>

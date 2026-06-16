@@ -55,7 +55,7 @@ export const Hero = () => {
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <motion.span
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-mono bg-card-bg text-muted border border-card-border mb-6 select-none"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-[0.18em] bg-card-bg text-muted border border-card-border mb-6 select-none"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               Available for work
@@ -63,30 +63,30 @@ export const Hero = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-4"
+              className="text-5xl sm:text-7xl md:text-8xl font-extrabold font-heading tracking-tight leading-[0.98] text-foreground mb-4"
             >
               Hi, I&apos;m <span className="text-white">Himanshu Sengar</span>
             </motion.h1>
 
             <motion.h2
               variants={itemVariants}
-              className="text-xl sm:text-2xl font-semibold text-accent mb-6"
+              className="text-2xl sm:text-3xl font-semibold font-heading tracking-tight text-accent mb-6"
             >
               Full Stack Developer
             </motion.h2>
 
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl text-foreground/90 max-w-xl leading-relaxed mb-4 font-normal"
+              className="text-lg sm:text-xl text-foreground max-w-2xl leading-relaxed mb-4 font-light"
             >
-              Building scalable web applications, automation systems, and deployment-focused solutions using modern frontend and backend technologies.
+              Building scalable <strong className="text-white font-semibold">web applications</strong>, automation systems, and deployment-focused solutions using modern <strong className="text-white font-semibold">frontend and backend</strong> technologies.
             </motion.p>
 
             <motion.p
               variants={itemVariants}
-              className="text-sm sm:text-base text-muted max-w-lg leading-relaxed mb-8 font-light"
+              className="text-base text-muted max-w-xl leading-relaxed mb-8 font-light"
             >
-              Focused on React ecosystems, DevOps-oriented workflows, and real-world software engineering projects.
+              Focused on <strong className="text-white/80 font-medium">React ecosystems</strong>, DevOps-oriented workflows, and real-world software engineering projects.
             </motion.p>
 
             <motion.div
@@ -96,8 +96,8 @@ export const Hero = () => {
               <Button variant="primary" href="#projects" icon={<ArrowRight size={16} />}>
                 View Projects
               </Button>
-              <Button variant="secondary" href="/resume.png" download="Himanshu_Sengar_Resume.png" icon={<FileText size={16} />} iconPosition="left">
-                Download Resume
+              <Button variant="secondary" href="/Himanshu_Sengar_Resume.pdf" icon={<FileText size={16} />} iconPosition="left">
+                View Resume
               </Button>
             </motion.div>
           </div>
