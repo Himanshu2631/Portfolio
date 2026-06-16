@@ -7,115 +7,63 @@ import { FadeIn } from "@/components/common/Animated";
 import { Button } from "@/components/common/Button";
 import { ArrowUpRight, Github, X, Check, Terminal, Cpu, Sparkles, AlertCircle } from "lucide-react";
 
-// 1. Docker DevOps Dashboard Preview
-const DockerPreview = React.memo(() => (
-  <div className="w-full h-full bg-[#0b0b0c] border border-card-border/80 rounded-xl p-4 sm:p-5 font-mono text-xs select-none flex flex-col justify-between">
-    <div className="flex items-center justify-between border-b border-card-border pb-2.5">
-      <span className="text-muted-dark font-medium">containers_active (4)</span>
-      <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold text-[10px] uppercase">Healthy</span>
+// Browser Mockup component to frame project screenshots
+const BrowserMockup = React.memo(({ src, alt }) => (
+  <div className="w-full bg-[#0b0b0c] border border-card-border/80 rounded-xl shadow-2xl overflow-hidden flex flex-col select-none group/browser transition-all duration-300">
+    {/* Window Header */}
+    <div className="flex items-center justify-between px-4 py-2.5 bg-[#0d0d0e] border-b border-card-border shrink-0">
+      <div className="flex gap-1.5">
+        <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+      </div>
+      <div className="bg-[#151516] border border-card-border px-3 py-0.5 rounded text-[10px] text-muted-dark w-48 text-center truncate font-mono">
+        {alt.toLowerCase().replace(/\s+/g, '-')}.app
+      </div>
+      <div className="w-10" />
     </div>
-    <div className="space-y-1.5 my-2.5">
-      <div className="flex items-center justify-between py-1 bg-background/50 border border-card-border/60 px-3 rounded-md">
-        <span className="text-foreground/90 text-[10px] sm:text-xs">api-gateway</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-emerald-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          running
-        </span>
-      </div>
-      <div className="flex items-center justify-between py-1 bg-background/50 border border-card-border/60 px-3 rounded-md">
-        <span className="text-foreground/90 text-[10px] sm:text-xs">auth-service</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-emerald-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          running
-        </span>
-      </div>
-      <div className="flex items-center justify-between py-1 bg-background/50 border border-card-border/60 px-3 rounded-md">
-        <span className="text-foreground/90 text-[10px] sm:text-xs">cache-redis</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-emerald-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          running
-        </span>
-      </div>
-    </div>
-    <div className="flex justify-between items-center text-[10px] text-muted-dark pt-1.5 border-t border-card-border/40">
-      <span>CPU: 12.4%</span>
-      <span>RAM: 2.1 GB</span>
+    {/* Window Content */}
+    <div className="relative aspect-[16/10] w-full overflow-hidden bg-background">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/browser:scale-[1.03]"
+      />
+      {/* Subtle inner shadow overlay */}
+      <div className="absolute inset-0 shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)] pointer-events-none" />
     </div>
   </div>
 ));
-DockerPreview.displayName = "DockerPreview";
-
-// 2. Faculty Feedback Automation Preview
-const FeedbackPreview = React.memo(() => (
-  <div className="w-full h-full bg-[#0b0b0c] border border-card-border/80 rounded-xl p-4 sm:p-5 font-mono text-xs select-none flex flex-col justify-between">
-    <div className="flex items-center justify-between border-b border-card-border pb-2.5">
-      <span className="text-muted-dark font-medium">feedback_metrics</span>
-      <span className="text-accent text-[10px] font-semibold uppercase">Q3 Analysis</span>
-    </div>
-    <div className="space-y-2 my-2">
-      <div className="space-y-0.5">
-        <div className="flex justify-between text-[10px] text-foreground/80">
-          <span>Overall Score</span>
-          <span>4.8 / 5.0</span>
-        </div>
-        <div className="w-full h-1.5 bg-background border border-card-border rounded-full overflow-hidden">
-          <div className="h-full bg-accent rounded-full" style={{ width: "92%" }} />
-        </div>
-      </div>
-      <div className="space-y-0.5">
-        <div className="flex justify-between text-[10px] text-foreground/80">
-          <span>Response Rate</span>
-          <span>96.4%</span>
-        </div>
-        <div className="w-full h-1.5 bg-background border border-card-border rounded-full overflow-hidden">
-          <div className="h-full bg-emerald-400 rounded-full" style={{ width: "96%" }} />
-        </div>
-      </div>
-    </div>
-    <div className="grid grid-cols-2 gap-1.5 pt-1.5 text-[10px] text-muted-dark border-t border-card-border/40">
-      <div className="border border-card-border/60 bg-background/30 p-1 rounded">
-        <span className="block text-foreground/80 font-bold">142</span>
-        responses
-      </div>
-      <div className="border border-card-border/60 bg-background/30 p-1 rounded">
-        <span className="block text-accent font-bold">0.4s</span>
-        latency
-      </div>
-    </div>
-  </div>
-));
-FeedbackPreview.displayName = "FeedbackPreview";
-
-// 3. CredLens Preview
-const CredLensPreview = React.memo(() => (
-  <div className="w-full h-full bg-[#0b0b0c] border border-card-border/80 rounded-xl p-4 sm:p-5 font-mono text-xs select-none flex flex-col justify-between">
-    <div className="flex items-center justify-between border-b border-card-border pb-2.5">
-      <span className="text-muted-dark font-medium">cred_lens_evaluator</span>
-      <span className="px-1.5 py-0.5 rounded bg-accent-muted text-accent font-semibold text-[10px] uppercase">Verified</span>
-    </div>
-    <div className="flex flex-col items-center justify-center my-1.5 space-y-1.5">
-      <div className="relative w-14 h-14 flex items-center justify-center">
-        <div className="absolute inset-0 rounded-full border-2 border-card-border" />
-        <div className="absolute inset-0 rounded-full border-2 border-accent border-r-transparent border-b-transparent transform rotate-45 animate-pulse" />
-        <span className="text-sm font-bold text-foreground">98.2</span>
-      </div>
-      <span className="text-[10px] text-foreground/90 font-medium">High Credibility Tier</span>
-    </div>
-    <div className="flex justify-between items-center text-[10px] text-muted-dark pt-1.5 border-t border-card-border/40">
-      <span>insights_processed: 8.4k</span>
-    </div>
-  </div>
-));
-CredLensPreview.displayName = "CredLensPreview";
+BrowserMockup.displayName = "BrowserMockup";
 
 export const Projects = () => {
   const [activeProject, setActiveProject] = useState(null);
 
   const projectsList = [
     {
+      title: "credlens",
+      displayName: "CredLens",
+      featureChip: "Featured Project",
+      description: "A modern intelligent credibility analysis platform featuring a high-performance frontend architecture, scalable UI systems, and polished user experiences.",
+      extendedDescription: "Designed to evaluate digital credibility parameters. Pipelines semantic metadata into analysis engines and renders credibility ratings onto dashboards.",
+      architecture: "Structured with Next.js using dynamic client caching. Offloads analysis algorithms to background tasks to keep UI interaction smooth.",
+      challenges: "Rendering large numbers of data-tree source nodes dynamically. Solved using list virtualization and CSS layer acceleration.",
+      features: [
+        "Intelligent credibility scoring",
+        "High-performance UI architecture",
+        "Real-time insight processing",
+        "Scalable UI component system",
+        "Polished interactive UX transitions"
+      ],
+      tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Python"],
+      github: "https://github.com",
+      demo: "https://cred-lens-one.vercel.app/",
+      imageSrc: "/images/credlens-screenshot.png"
+    },
+    {
       title: "docker_devops_dashboard",
       displayName: "Docker DevOps Dashboard",
-      featureChip: "Production-Ready Observability",
+      featureChip: "Technical Highlight",
       description: "A real-time Docker observability and infrastructure monitoring platform engineered for containerized infrastructure visibility and DevOps workflows.",
       extendedDescription: "A container observability system designed to replace repetitive terminal commands. Connects directly to the Docker Unix Socket to expose active microservices and system resource telemetry.",
       architecture: "Utilizes Socket.io (WebSockets) to establish persistent connections, streaming live CPU and RAM resource profiles at sub-10ms intervals.",
@@ -130,48 +78,8 @@ export const Projects = () => {
       ],
       tags: ["React", "Node.js", "Express", "MongoDB", "Dockerode", "WebSockets"],
       github: "https://github.com",
-      demo: "#",
-      preview: <DockerPreview />
-    },
-    {
-      title: "faculty_feedback_automation",
-      displayName: "Faculty Feedback Automation",
-      featureChip: "Secure Automation Engine",
-      description: "An automated faculty evaluation platform designed to collect, process, and analyze student feedback securely with efficient administrative reporting.",
-      extendedDescription: "An automated course evaluation aggregator. Protects respondent confidentiality through secure token validation routing, preventing dual submissions.",
-      architecture: "Uses React, Node.js, Express, and MongoDB. Integrates an asynchronous worker queue that aggregates metrics and generates formatted PDF documents.",
-      challenges: "Generating formatted multi-page PDF documents containing visual data graphs in real-time. Resolved using headless PDF export workers.",
-      features: [
-        "Faculty-wise feedback forms",
-        "Interactive rating dashboards",
-        "Automated PDF report generation",
-        "Streamlined submission workflows",
-        "Responsive user interface"
-      ],
-      tags: ["React", "Node.js", "Express", "MongoDB", "Chart.js", "Automation"],
-      github: "https://github.com",
-      demo: "#",
-      preview: <FeedbackPreview />
-    },
-    {
-      title: "credlens",
-      displayName: "CredLens",
-      featureChip: "AI & Metadata Analytics",
-      description: "A modern intelligent credibility analysis platform featuring a high-performance frontend architecture, scalable UI systems, and polished user experiences.",
-      extendedDescription: "Designed to evaluate digital credibility parameters. Pipelines semantic metadata into analysis engines and renders credibility ratings onto dashboards.",
-      architecture: "Structured with Next.js using dynamic client caching. Offloads analysis algorithms to background tasks to keep UI interaction smooth.",
-      challenges: "Rendering large numbers of data-tree source nodes dynamically. Solved using list virtualization and CSS layer acceleration.",
-      features: [
-        "Intelligent credibility scoring",
-        "High-performance UI architecture",
-        "Real-time insight processing",
-        "Scalable UI component system",
-        "Polished interactive UX transitions"
-      ],
-      tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Python"],
-      github: "https://github.com",
-      demo: "#",
-      preview: <CredLensPreview />
+      demo: "https://docker-devops-dashboard.vercel.app/",
+      imageSrc: "/images/docker-dashboard-screenshot.png"
     }
   ];
 
@@ -258,12 +166,10 @@ export const Projects = () => {
               
               <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 {/* Visual Preview Area */}
-                <div className={`lg:col-span-5 w-full flex items-center justify-center bg-background/50 border border-card-border/60 rounded-xl p-4 sm:p-6 h-[200px] sm:h-[220px] select-none grid-bg ${
+                <div className={`lg:col-span-5 w-full select-none ${
                   index % 2 === 1 ? "lg:order-last" : ""
                 }`}>
-                  <div className="w-full max-w-[280px] h-full flex items-center justify-center group-hover:scale-[1.03] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    {project.preview}
-                  </div>
+                  <BrowserMockup src={project.imageSrc} alt={project.displayName} />
                 </div>
                 
                 {/* Details Column */}

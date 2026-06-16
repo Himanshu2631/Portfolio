@@ -117,7 +117,14 @@ export const Navbar = () => {
               );
             })}
           </div>
-          <Button variant="outline" size="sm" href="/Himanshu_Sengar_Resume.pdf" icon={<ArrowUpRight size={14} />}>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            href="/HimanshuSengar_Resume.pdf" 
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={<ArrowUpRight size={14} />}
+          >
             Resume
           </Button>
         </nav>
@@ -166,7 +173,9 @@ export const Navbar = () => {
               <Button
                 variant="outline"
                 size="md"
-                href="/Himanshu_Sengar_Resume.pdf"
+                href="/HimanshuSengar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 icon={<ArrowUpRight size={16} />}
                 className="w-full mt-2"
                 onClick={() => setIsOpen(false)}
