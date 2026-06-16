@@ -102,7 +102,7 @@ export const Contact = () => {
                 <Button
                   variant="secondary"
                   size="md"
-                  href="https://linkedin.com/in/himanshusengar"
+                  href="https://www.linkedin.com/in/himanshu-sengar-0a8a7b299/"
                   icon={<Linkedin size={16} />}
                   iconPosition="left"
                   className="w-full justify-start text-xs sm:text-sm"

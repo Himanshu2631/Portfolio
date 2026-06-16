@@ -7,7 +7,7 @@ export const Footer = () => {
 
   const socialLinks = [
     { icon: <Github size={16} />, href: "https://github.com/Himanshu2631", label: "GitHub" },
-    { icon: <Linkedin size={16} />, href: "https://linkedin.com/in/himanshusengar", label: "LinkedIn" },
+    { icon: <Linkedin size={16} />, href: "https://www.linkedin.com/in/himanshu-sengar-0a8a7b299/", label: "LinkedIn" },
     { icon: <Mail size={16} />, href: "mailto:himanshusengar235@gmail.com", label: "Email" },
   ];
 
