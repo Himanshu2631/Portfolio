@@ -80,6 +80,28 @@ export const Projects = () => {
       github: "https://github.com",
       demo: "https://docker-devops-dashboard.vercel.app/",
       imageSrc: "/images/docker-dashboard-screenshot.png"
+    },
+    {
+      title: "pdfnest",
+      displayName: "PDFNest — PDF Management Toolkit",
+      featureChip: "Productivity Tool",
+      description: "PDFNest is a modern PDF utility platform that helps users merge and split PDF documents directly in the browser. It provides a fast, privacy-focused workflow with no server uploads, allowing users to organize and manage documents efficiently.",
+      extendedDescription: "Built specifically to satisfy the Digital Heroes assessment requirements, PDFNest runs entirely in the client-side sandbox. It empowers users to manage, merge, and split files with zero server dependencies, guaranteeing complete privacy and near-instant processing speeds.",
+      architecture: "Built on the Next.js App Router, using pdf-lib for assembly/compilation and pdfjs-dist via canvas API for highly optimized page-by-page client-side viewport rendering.",
+      challenges: "Preventing client-side memory leakage and main thread blocking when compiling large multi-page PDF documents. Resolved by using dynamically loaded scripts, canvas buffering, and granular UI lifecycle hooks.",
+      features: [
+        "Merge multiple PDF files into a single document",
+        "Split PDFs by page ranges",
+        "Drag-and-drop file upload",
+        "Client-side processing for privacy",
+        "Responsive and modern user interface",
+        "Real-time validation and error handling",
+        "Built for Digital Heroes assessment requirements"
+      ],
+      tags: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "PDF-lib", "Vercel"],
+      github: "https://github.com/Himanshu2631/PDFNest",
+      demo: "https://pdf-neest.vercel.app/",
+      imageSrc: "/images/pdfnest-screenshot.png"
     }
   ];
 
